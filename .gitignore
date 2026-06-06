@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.streamlit/
+*.py[^c]
+.DS_Store
+Thumbs.db

@@ -1,0 +1,1 @@
+With medical information, retrieval systems can achieve faster structural query resolutions.

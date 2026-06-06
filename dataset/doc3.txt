@@ -1,0 +1,1 @@
+Data mining applications heavily rely on information retrieval pipelines for pattern discovery.

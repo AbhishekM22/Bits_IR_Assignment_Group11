@@ -21,7 +21,7 @@ except LookupError:
     nltk.download('wordnet')
 
 # Page Layout Configuration
-st.set_page_config(page_title="BITS Pilani IR Portal Engine", layout="wide")
+st.set_page_config(page_title="IR Portal Engine", layout="wide")
 
 # ---------------------------------------------------------
 # DATA STRUCTURES ENGINE FROM SCRATCH (SECTION D)
@@ -166,7 +166,6 @@ if 'corpus_storage' not in st.session_state:
 
 # --- SYSTEM SUB-SECTION ROUTING INTERFACE ---
 st.title("🔬 End-to-End Advanced Information Retrieval System")
-st.markdown("Designed explicitly to align with the complete BITS Pilani Virtual Lab evaluation rubric.")
 st.markdown("---")
 
 app_sections = st.sidebar.radio("Navigate Evaluation Criteria Target:", [

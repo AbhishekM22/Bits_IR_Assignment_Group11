@@ -1,24 +1,34 @@
+import os
 import streamlit as st
+import nltk
+
+# --- FORCE SAFE WRITABLE PATH FOR STREAMLIT CLOUD ---
+# Create a local directory within the app workspace for NLTK data
+nltk_data_dir = os.path.join(os.path.expanduser("~"), "nltk_data")
+if not os.path.exists(nltk_data_dir):
+    os.makedirs(nltk_data_dir)
+
+# Append this directory to NLTK's search path options
+if nltk_data_dir not in nltk.data.path:
+    nltk.data.path.append(nltk_data_dir)
+
+# --- GUARANTEED CLOUD DOWNLOAD INITIALIZATION ---
+for resource in ['punkt', 'punkt_tab', 'stopwords', 'wordnet']:
+    try:
+        nltk.data.find(f"tokenizers/{resource}" if 'punkt' in resource else f"corpora/{resource}")
+    except LookupError:
+        nltk.download(resource, download_dir=nltk_data_dir)
+
+# Now it is perfectly safe to import the rest of your modules
 import pandas as pd
 import re
 import time
 import collections
 import Levenshtein
 from textblob import Word
-import nltk
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import PorterStemmer, WordNetLemmatizer
-
-# --- SAFETY LINGUISTIC RESOURCING ---
-try:
-    nltk.data.find('tokenizers/punkt')
-    nltk.data.find('corpora/stopwords')
-    nltk.data.find('corpora/wordnet')
-except LookupError:
-    nltk.download('punkt')
-    nltk.download('stopwords')
-    nltk.download('wordnet')
 
 # Page Layout Configuration
 st.set_page_config(page_title="IR Portal Engine", layout="wide")
